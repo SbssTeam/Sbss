@@ -224,7 +224,13 @@ function create_config( )
     "invite",
     "all",
     "leave_ban",
-    "admin"
+    "admin",
+    "antifosh",
+    "antilink",
+    "antitag",
+    "setrank",
+    "id",
+    "tagall"
     },
     sudo_users = {122774063},--Sudo users
     disabled_channels = {},
