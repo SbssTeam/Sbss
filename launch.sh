@@ -111,5 +111,5 @@ else
     exit 1
   fi
 
-  ./tg/bin/telegram-cli -k ./tg/tg-server.pub -s ./bot/seedbot.lua -l 1 -E $@
+  ./tg/bin/telegram-cli -k ./tg/tg-server.pub -s ./bot/sbssbot.lua -l 1 -E $@
 fi
