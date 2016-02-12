@@ -230,7 +230,7 @@ function create_config( )
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
     about_text = [[Sbss Bot V2 Beta
-    An Advanced Anti Spam Bot Foeked On TeleSeed
+    An Advanced Anti Spam Bot Forked On TeleSeed
     
     Develpoed By:
     @Mr_Ah_S
