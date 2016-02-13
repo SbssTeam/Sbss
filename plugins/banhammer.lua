@@ -91,7 +91,7 @@ local function kick_ban_res(extra, success, result)
       local from_id = extra.from_id
       local get_cmd = extra.get_cmd
       local receiver = "chat#id"..chat_id
-       if get_cmd == "حذف" then
+       if get_cmd == "اخراج" then
          if member_id == from_id then
              return send_large_msg(receiver, "شما نمیتوانید خود را حذف کنید")
          end
