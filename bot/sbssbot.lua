@@ -230,7 +230,14 @@ function create_config( )
     "antitag",
     "setrank",
     "id",
-    "tagall"
+    "tagall",
+    "SUDO",
+    "feedback",
+    "getplug",
+    "echo",
+    "plugins",
+    "time",
+    "welcome"
     },
     sudo_users = {122774063},--Sudo users
     disabled_channels = {},
