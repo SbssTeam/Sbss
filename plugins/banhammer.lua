@@ -91,7 +91,7 @@ local function kick_ban_res(extra, success, result)
       local from_id = extra.from_id
       local get_cmd = extra.get_cmd
       local receiver = "chat#id"..chat_id
-       if get_cmd == "حذف" then
+       if get_cmd == "اخراج" then
          if member_id == from_id then
              return send_large_msg(receiver, "شما نمیتوانید خود را حذف کنید")
          end
@@ -216,7 +216,7 @@ local function run(msg, matches)
 	end
  end
 
-if matches[1]:lower() == 'حذف' then
+if matches[1]:lower() == 'اخراج' then
     if type(msg.reply_id)~="nil" and is_momod(msg) then
       if is_admin(msg) then
         local msgr = get_message(msg.reply_id,Kick_by_reply_admins, false)
@@ -318,7 +318,7 @@ return {
     "^(حذف بن) (.*)$",
     "^(حذف سوپر بن) (.*)$",
     "^(حذف سوپر بن)$",
-    "^(حذف) (.*)$",
+    "^(اخراج) (.*)$",
     "^(خروج)$",
     "^(بن)$",
     "^(حذف بن)$",
