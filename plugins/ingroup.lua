@@ -238,7 +238,7 @@ local function get_description(msg, data)
   local about = string.gsub(msg.to.print_name, "_", " ")..':\n\n'..about
   return 'درباره '..about
 end
-local function lock_group_arabic(msg, data, target)
+--[[local function lock_group_arabic(msg, data, target)
   if not is_momod(msg) then
     return "فقط مدیران"
   end
@@ -278,7 +278,7 @@ local function lock_group_bots(msg, data, target)
     save_data(_config.moderation.data, data)
     return 'ورود ربات ها ممنوع شد'
   end
-end
+end]]
 
 local function unlock_group_bots(msg, data, target)
   if not is_momod(msg) then
@@ -1074,10 +1074,10 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked flood ")
         return lock_group_floodmod(msg, data, target)
       end
-      if matches[2] == 'عربی' then
+      --[[if matches[2] == 'عربی' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked arabic ")
         return lock_group_arabic(msg, data, target)
-      end
+      end]]
       if matches[2] == 'ربات ها' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked bots ")
         return lock_group_bots(msg, data, target)
@@ -1117,10 +1117,10 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked flood ")
         return unlock_group_floodmod(msg, data, target)
       end
-      if matches[2] == 'عربی' then
+      --[[if matches[2] == 'عربی' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked arabic ")
         return unlock_group_arabic(msg, data, target)
-      end
+      end]]
 	  if matches[2] == 'لینک' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked link ")
         return unlock_group_link(msg, data, target)
@@ -1217,6 +1217,10 @@ local function run(msg, matches)
           msgr = get_message(msg.reply_id, setowner_by_reply, false)
       end
     end
+    if matches[1] == 'sbss'
+        return 'an advanced persian anti spam robot forked on seed \n Github.com/SbssTeam/Sbss \n Powered by @Sbss_Team \n'
+     end
+  
     if matches[1] == 'صاحب' then
       local group_owner = data[tostring(msg.to.id)]['set_owner']
       if not group_owner then 
@@ -1358,6 +1362,8 @@ return {
   "^(پاک کردن) (.*)$",
   "^(kill) (chat)$",
   "^(kill) (realm)$",
+  "^([Ss][Bb][Ss][Ss])$",
+  "^(sbss)$",
   "^(تنزل) (.*)$",
   "^(تنزل)",
   "^(تنظیم) ([^%s]+) (.*)$",
