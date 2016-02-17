@@ -1396,7 +1396,7 @@ local function run(msg, matches)
         return 'This is a group'
      end
    end
-    if matches[1] == 'رهنما' then
+    if matches[1] == 'راهنما' then
       if not is_momod(msg) or is_realm(msg) then
         return
       end
@@ -1440,7 +1440,7 @@ return {
   "^(تنظیم عکس)$",
   "^(ترفیع) (.*)$",
   "^(ترفیع)",
-  "^(رهنما)$",
+  "^(راهنما)$",
   "^(پاک کردن) (.*)$",
   "^(kill) (chat)$",
   "^(kill) (realm)$",
