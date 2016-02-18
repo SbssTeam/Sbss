@@ -20,13 +20,16 @@ function get_receiver(msg)
   if msg.to.type == 'chat' then
     return 'chat#id'..msg.to.id
   end
+    if msg.to.type == 'channel' then
+    return 'channel#id'..msg.to.id
+  end
   if msg.to.type == 'encr_chat' then
     return msg.to.print_name
   end
 end
 
 function is_chat_msg( msg )
-  if msg.to.type == 'chat' then
+  if msg.to.type == 'chat' or if msg.to.type == 'channel' then
     return true
   end
   return false
