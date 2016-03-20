@@ -76,3 +76,4 @@ return {
     patterns = {"^آپ تایم", "^$uptime","^Get dialogs$"}, 
     run = run 
 }
+--enjoy
