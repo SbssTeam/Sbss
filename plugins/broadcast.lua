@@ -3,7 +3,7 @@ local function run(msg, matches)
 		local response = matches[3]
 		send_large_msg("chat#id"..matches[2], response)
 	end
-	if matches[1] == 'فرستادن' then
+	if matches[1] == 'فرستادن' or matches[1] == 'broadcast'then
 		if is_sudo(msg) then -- Only sudo !
 			local data = load_data(_config.moderation.data)
 			local groups = 'groups'
@@ -17,8 +17,16 @@ local function run(msg, matches)
 	end
 end
 return {
+description = "Send a Massage To all Groups",
+ usage = {
+  "/broadcast (msg) : Send Massage To all Groups",
+  "broadcast (msg): Send Massage To all Groups",
+  "فرستادن (msg) : Send Massage To all Groups",
+ },
   patterns = {
     "^(فرستادن) +(.+)$",
+    "^[!/#](broadcast) +(.+)$",
+    "^(broadcast) +(.+)$",
     "^(bc) (%d+) (.*)$"
   },
   run = run

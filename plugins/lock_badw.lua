@@ -32,6 +32,7 @@ return {patterns = {
 	"حرومی",
 	"سگ",
 	"مادر سگ",
+        "ناموس",
 	"[Kk]os",
 	"[Jj]ende",
 	"[Ll]ashi",

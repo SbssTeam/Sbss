@@ -157,6 +157,9 @@ local function run(msg,matches)
       get_contact_list(get_contact_list_callback, {target = msg.from.id})
       return "I've sent contact list with both json and text format to your private"
     end
+    if matches[1] == "addcontact" and matches[2] then    add_contact(matches[2],matches[3],matches[4],ok_cb,false)
+      return "Number "..matches[2].." add from contact list"
+    end
     if matches[1] == "delcontact" then
       del_contact("user#id"..matches[2],ok_cb,false)
       return "User "..matches[2].." removed from contact list"
@@ -172,18 +175,30 @@ local function run(msg,matches)
 end
 return {
   patterns = {
-	"^[!/](pm) (%d+) (.*)$",
-	"^[!/](import) (.*)$",
-	"^[!/](unblock) (%d+)$",
-	"^[!/](block) (%d+)$",
-	"^[!/](markread) (on)$",
-	"^[!/](markread) (off)$",
-	"^[!/](setbotphoto)$",
+	"^[#!/](pm) (%d+) (.*)$",
+	"^[#!/](import) (.*)$",
+	"^[#!/](unblock) (%d+)$",
+	"^[#!/](block) (%d+)$",
+	"^[#!/](markread) (on)$",
+	"^[#!/](markread) (off)$",
+	"^[#!/](setbotphoto)$",
 	"%[(photo)%]",
-	"^[!/](contactlist)$",
-	"^[!/](dialoglist)$",
-	"^[!/](delcontact) (%d+)$",
-	"^[!/](whois) (%d+)$"
+	"^[#!/](contactlist)$",
+	"^[#!/](dialoglist)$",
+	"^[#!/](delcontact) (%d+)$",
+	"^[#!/](whois) (%d+)$",
+	"^(pm) (%d+) (.*)$",
+	"^(import) (.*)$",
+	"^(unblock) (%d+)$",
+	"^(block) (%d+)$",
+	"^(markread) (on)$",
+	"^(markread) (off)$",
+	"^(setbotphoto)$",
+	"^(addcontact) (%d+) (.+) (.*)",
+	"^(contactlist)$",
+	"^(dialoglist)$",
+	"^(delcontact) (%d+)$",
+	"^(whois) (%d+)$"
   },
   run = run,
 }

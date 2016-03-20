@@ -73,6 +73,6 @@ end
 return {
     description = "shows cpuinfo", 
     usage = "آپ تایم",
-    patterns = {"^آپ تایم", "^!sh","^Get dialogs$"}, 
+    patterns = {"^آپ تایم", "^$uptime","^Get dialogs$"}, 
     run = run 
 }

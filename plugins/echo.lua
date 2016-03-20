@@ -11,10 +11,16 @@ local function run(msg, matches)
 end
 
 return {
-  description = "تکرار یک پیام",
-  usage = "بگو [whatever]: تکرار پیام",
+  description = "Echo A Massage",
+  usage = {
+  "بگو [whatever]: Echo Massage",
+  "/echo [whatever]: Echo Massage ",
+  "echo [whatever]: Echo Massage ",
+  },
   patterns = {
-    "^بگو +(.+)$"
+    "^بگو +(.+)$",
+	"^[/!#]echo +(.+)$",
+	"^echo +(.+)$"
   }, 
   run = run 
 }

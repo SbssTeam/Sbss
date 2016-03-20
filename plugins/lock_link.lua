@@ -28,4 +28,3 @@ return {patterns = {
 "[Hh][Tt][Tt][Pp]://",
 "[Ww][Ww][Ww]:",
 }, run = run}
---Thanks To Creed

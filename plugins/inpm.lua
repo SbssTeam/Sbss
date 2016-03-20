@@ -28,7 +28,7 @@ local function chat_list(msg)
                         end
                 end
 
-                message = message .. '👥 '.. name .. ' (ID: ' .. v .. ')\n\n '
+                message = message .. '?? '.. name .. ' (ID: ' .. v .. ')\n\n '
         end
         local file = io.open("./groups/lists/listed_groups.txt", "w")
         file:write(message)
@@ -54,7 +54,7 @@ local function run(msg, matches)
           local user_id = "user#id"..msg.from.id
    	  chat_add_user(chat_id, user_id, ok_cb, false)   
 	  local group_name = data[tostring(matches[2])]['settings']['set_name']	
-	  return "Added you to chat:\n\n👥"..group_name.." (ID:"..matches[2]..")"
+	  return "Added you to chat:\n\n??"..group_name.." (ID:"..matches[2]..")"
         elseif matches[1] == 'join' and not data[tostring(matches[2])] then
 		
          	return "Chat not found."
@@ -87,4 +87,3 @@ return {
     run = run,
 }
 end
-

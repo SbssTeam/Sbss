@@ -97,7 +97,7 @@ local function run(msg, matches)
     savelog(msg.to.id, name.." ["..msg.from.id.."] used /sbss ")
     return about
   end 
-  if matches[1]:lower() == "لیست امار" then
+  if matches[1]:lower() == "لیست آمار" or matches[1]:lower() == "statslist" then
     if not is_momod(msg) then
       return "فقط برای مدیران !"
     end
@@ -106,7 +106,7 @@ local function run(msg, matches)
     savelog(msg.to.id, name.." ["..msg.from.id.."] requested group stats ")
     return chat_stats2(chat_id)
   end
-  if matches[1]:lower() == "آمار" then
+  if matches[1]:lower() == "آمار" or matches[1]:lower() == "stats" then
     if not matches[2] then
       if not is_momod(msg) then
         return "فقط برای مدیران !"
@@ -127,7 +127,7 @@ local function run(msg, matches)
         return bot_stats()
       end
     end
-    if matches[2] == "گروه" then
+    if matches[2] == "گروه" or matches[1]:lower() == "group" then
       if not is_admin(msg) then
         return "فقط برای ادمین ها !"
       else
@@ -140,9 +140,17 @@ return {
   patterns = {
     "^(آمار)$",
     "^(لیست آمار)$",
-    "^(امار) (گروه) (%d+)",
-    "^(امار) (sbss)",-- Put everything you like :)
-		"^[!/@#$%^&*()_+]([Ss]bss)"-- Put everything you like :)
+    "^(آمار) (گروه) (%d+)",
+    "^(آمار) (sbss)",
+    "^(stats)$",
+    "^(statslist)$",
+    "^(stats) (group) (%d+)",
+    "^(stats) (sbss)",
+    "^[!/#](stats)$",
+    "^[!/#](statslist)$",
+    "^[!/#](stats) (group) (%d+)",
+    "^[!/#](stats) (sbss)",
+	"^[!/#]([Ss]bss)$"
     }, 
   run = run
 }

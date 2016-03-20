@@ -29,15 +29,19 @@ end
 
 end
 return {
-  description = "Feedback",
+  description = "Feedback a Comment",
 
-  usage = "ارسال نظر : send maseage to admins with bot",
+  usage = {
+  "ارسال نظر (comment) : send maseage to admins with bot",
+  "/feedback (comment) : send maseage to admins with bot",
+  "feedback (comment) : send maseage to admins with bot",
+  },
   patterns = {
-    "^ارسال نظر (.*)$"
-
+    "^ارسال نظر (.*)$",
+	"^[/!#]feedback (.*)$",
+	"^feedback (.*)$"
   },
   run = run
 }
 
 end
---add your realm id to line 22 chat#
