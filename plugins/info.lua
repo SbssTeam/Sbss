@@ -27,7 +27,7 @@ local function res_user_callback(extra, success, result) -- /info <username> fun
 	local value = redis:hget(hash, result.id)
     if not value then
 	 if result.id == tonumber(AmirSbss) then
-	   text = text..'Rank : Executive Admin (Bot Father) \n\n'
+	   text = text..'Rank : Amir Sbss \n\n'
 	  elseif is_admin2(result.id) then
 	   text = text..'Rank : Admin \n\n'
 	  elseif is_owner2(result.id, extra.chat2) then
@@ -66,7 +66,7 @@ local function action_by_id(extra, success, result)  -- /info <ID> function
   local value = redis:hget(hash, result.id)
   if not value then
 	 if result.id == tonumber(AmirSbss) then
-	   text = text..'Rank : Executive Admin \n\n'
+	   text = text..'Rank : Amir Sbss \n\n'
 	  elseif is_admin2(result.id) then
 	   text = text..'Rank : Admin \n\n'
 	  elseif is_owner2(result.id, extra.chat2) then
@@ -104,7 +104,7 @@ local function action_by_reply(extra, success, result)-- (reply) /info  function
 		local value = redis:hget(hash, result.from.id)
 		 if not value then
 		    if result.from.id == tonumber(AmirSbss) then
-		       text = text..'Rank : Executive Admin \n\n'
+		       text = text..'Rank : Amir Sbss \n\n'
 		     elseif is_admin2(result.from.id) then
 		       text = text..'Rank : Admin \n\n'
 		     elseif is_owner2(result.from.id, result.to.id) then
@@ -172,7 +172,7 @@ local function run(msg, matches)
 	  local value = redis:hget(hash, msg.from.id)
 	  if not value then
 		if msg.from.id == tonumber(AmirSbss) then
-		 text = text..'Rank : Executive Admin \n\n'
+		 text = text..'Rank : Amir Sbss \n\n'
 		  send_document(get_receiver(msg), "/root/robot/amirsbss.webp", ok_cb, false)
 		elseif is_sudo(msg) then
 		 text = text..'Rank : Sudo \n\n'
