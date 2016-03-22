@@ -370,7 +370,7 @@ local function unlock_group_tag(msg, data, target)
   end
 end
 
-local function lock_group_username(msg, data, target)
+local function lock_group_english(msg, data, target)
   if not is_momod(msg) then
     return "قفط مدیران❗️"
   end
@@ -454,12 +454,12 @@ local function unlock_group_link(msg, data, target)
   end
 end
 
-local function lock_group_username(msg, data, target)
+local function lock_group_english(msg, data, target)
   if not is_momod(msg) then
     return "فقط برای مدیران❗️"
   end
-  local group_username_lock = data[tostring(target)]['settings']['lock_english']
-  if group_username_lock == 'yes' then
+  local group_english_lock = data[tostring(target)]['settings']['lock_english']
+  if group_english_lock == 'yes' then
     return 'اینگلیسی از قبل قفل است🔒'
   else
     data[tostring(target)]['settings']['lock_english'] = 'yes'
@@ -468,12 +468,12 @@ local function lock_group_username(msg, data, target)
   end
 end
 
-local function unlock_group_username(msg, data, target)
+local function unlock_group_english(msg, data, target)
   if not is_momod(msg) then
     return "فقط مدیران❗️"
   end
-  local group_username_lock = data[tostring(target)]['settings']['lock_english']
-  if group_username_lock == 'no' then
+  local group_english_lock = data[tostring(target)]['settings']['lock_english']
+  if group_english_lock == 'no' then
     return 'اینگلیسی از قبل آزاد است🔓'
   else
     data[tostring(target)]['settings']['lock_english'] = 'no'
@@ -782,59 +782,59 @@ local function set_group_photo(msg, success, result)
   end
 end
 
-local function promote(receiver, member_username, member_id)
+local function promote(receiver, member_english, member_id)
   local data = load_data(_config.moderation.data)
   local group = string.gsub(receiver, 'chat#id', '')
   if not data[group] then
     return send_large_msg(receiver, 'گروه اضافه نشده')
   end
   if data[group]['moderators'][tostring(member_id)] then
-    return send_large_msg(receiver, member_username..' از قبل مدیر است')
+    return send_large_msg(receiver, member_english..' از قبل مدیر است')
   end
-  data[group]['moderators'][tostring(member_id)] = member_username
+  data[group]['moderators'][tostring(member_id)] = member_english
   save_data(_config.moderation.data, data)
-  return send_large_msg(receiver, member_username..' ترفیع یافت')
+  return send_large_msg(receiver, member_english..' ترفیع یافت')
 end
 
 local function promote_by_reply(extra, success, result)
     local msg = result
     local full_name = (msg.from.first_name or '')..' '..(msg.from.last_name or '')
-    if msg.from.username then
-      member_username = '@'.. msg.from.username
+    if msg.from.english then
+      member_english = '@'.. msg.from.english
     else
-      member_username = full_name
+      member_english = full_name
     end
     local member_id = msg.from.id
     if msg.to.type == 'chat' then
-      return promote(get_receiver(msg), member_username, member_id)
+      return promote(get_receiver(msg), member_english, member_id)
     end  
 end
 
-local function demote(receiver, member_username, member_id)
+local function demote(receiver, member_english, member_id)
   local data = load_data(_config.moderation.data)
   local group = string.gsub(receiver, 'chat#id', '')
   if not data[group] then
     return send_large_msg(receiver, 'گروه اضافه نشده')
   end
   if not data[group]['moderators'][tostring(member_id)] then
-    return send_large_msg(receiver, member_username..' مدیر نیست !')
+    return send_large_msg(receiver, member_english..' مدیر نیست !')
   end
   data[group]['moderators'][tostring(member_id)] = nil
   save_data(_config.moderation.data, data)
-  return send_large_msg(receiver, member_username..' تنزل یافت')
+  return send_large_msg(receiver, member_english..' تنزل یافت')
 end
 
 local function demote_by_reply(extra, success, result)
     local msg = result
     local full_name = (msg.from.first_name or '')..' '..(msg.from.last_name or '')
-    if msg.from.username then
-      member_username = '@'..msg.from.username
+    if msg.from.english then
+      member_english = '@'..msg.from.english
     else
-      member_username = full_name
+      member_english = full_name
     end
     local member_id = msg.from.id
     if msg.to.type == 'chat' then
-      return demote(get_receiver(msg), member_username, member_id)
+      return demote(get_receiver(msg), member_english, member_id)
     end  
 end
 
@@ -854,14 +854,14 @@ local function promote_demote_res(extra, success, result)
 --vardump(result)
 --vardump(extra)
       local member_id = result.id
-      local member_username = "@"..result.username
+      local member_english = "@"..result.english
       local chat_id = extra.chat_id
       local mod_cmd = extra.mod_cmd
       local receiver = "chat#id"..chat_id
       if mod_cmd == 'ترفیع' then
-        return promote(receiver, member_username, member_id)
+        return promote(receiver, member_english, member_id)
       elseif mod_cmd == 'تنزل' then
-        return demote(receiver, member_username, member_id)
+        return demote(receiver, member_english, member_id)
       end
 end
 
@@ -1166,9 +1166,9 @@ local function run(msg, matches)
         mod_cmd = 'ترفیع', 
 	from_id = msg.from.id
 	}
-	local username = matches[2]
-	local username = string.gsub(matches[2], '@', '')
-	return res_user(username, promote_demote_res, cbres_extra)
+	local english = matches[2]
+	local english = string.gsub(matches[2], '@', '')
+	return res_user(english, promote_demote_res, cbres_extra)
     end
     if matches[1] == 'تنزل' or matches[1] == 'demote' and not matches[2] then
       if not is_owner(msg) then
@@ -1185,7 +1185,7 @@ local function run(msg, matches)
       if not is_owner(msg) then
         return "فقط توسط صاحب گروه"
       end
-      if string.gsub(matches[2], "@", "") == msg.from.username and not is_owner(msg) then
+      if string.gsub(matches[2], "@", "") == msg.from.english and not is_owner(msg) then
         return "شما نمیتوانید مقام خود را حذف کنید"
       end
 	local member = matches[2]
@@ -1195,9 +1195,9 @@ local function run(msg, matches)
         mod_cmd = 'تنزل', 
 	from_id = msg.from.id
 	}
-	local username = matches[2]
-	local username = string.gsub(matches[2], '@', '')
-	return res_user(username, promote_demote_res, cbres_extra)
+	local english = matches[2]
+	local english = string.gsub(matches[2], '@', '')
+	return res_user(english, promote_demote_res, cbres_extra)
     end
     if matches[1] == 'لیست مدیران' or matches[1] == 'modlist' then
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group modlist")
@@ -1569,10 +1569,10 @@ local function run(msg, matches)
       local cbres_extra = {
         chatid = msg.to.id
       }
-      local username = matches[2]
-      local username = username:gsub("@","")
-      savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /res "..username)
-      return res_user(username,  callbackres, cbres_extra)
+      local english = matches[2]
+      local english = english:gsub("@","")
+      savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /res "..english)
+      return res_user(english,  callbackres, cbres_extra)
     end
     if matches[1] == 'kickinactive' then
       --send_large_msg('chat#id'..msg.to.id, 'I\'m in matches[1]')
