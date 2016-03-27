@@ -349,7 +349,7 @@ See Patterns In Github
 لیست فیلتر
 لیست کلمات فیلتر شده
 
-]]
+]],
     help_text = [[
     English Commands:
 
