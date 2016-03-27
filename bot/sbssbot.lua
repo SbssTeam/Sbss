@@ -278,7 +278,7 @@ function create_config( )
     help_text_realm = [[
 See Patterns In Github
 ]],
-    help_fa = [[
+    help_fa_text = [[
 دستورات فارسی ربات:
 
 1- اداره اعضا
@@ -350,7 +350,7 @@ See Patterns In Github
 لیست کلمات فیلتر شده
 
 ]]
-    help_en = [[
+    help_text = [[
     English Commands:
 
 1- Member managing:
