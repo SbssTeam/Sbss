@@ -899,6 +899,11 @@ local function help()
   return help_text
 end
 
+local function help_fa()
+  local help_fa_text = tostring(_config.help_text)
+  return help_fa_text
+end
+
 local function cleanmember(cb_extra, success, result)
   local receiver = cb_extra.receiver
   local chat_id = "chat#id"..result.id
@@ -1558,12 +1563,19 @@ local function run(msg, matches)
         return 'This is a group'
      end
    end
-    if matches[1] == 'کمک' or matches[1] == 'group help'then
+    if matches[1] == 'help' or matches[1] == 'help'and matches[2] =='en' then
       if not is_momod(msg) or is_realm(msg) then
         return
       end
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /help")
       return help()
+    end
+    if matches[1] == 'راهنما' or matches[1] == 'help'and matches[2] =='fa' then
+      if not is_momod(msg) or is_realm(msg) then
+        return
+      end
+      savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /help")
+      return help_fa()
     end
     if matches[1] == 'کد' or matches[1] == 'res' and is_momod(msg) then 
       local cbres_extra = {
@@ -1599,6 +1611,7 @@ return {
   "^(قوانین)$",
   "^(توضیحات)$",
   "^(تنظیم نام) (.*)$",
+  "^(راهنما)$",
   "^(تنظیم عکس)$",
   "^(ترفیع) (.*)$",
   "^(ترفیع)",
@@ -1630,6 +1643,8 @@ return {
   "^(rules)$",
   "^(about)$",
   "^(setname) (.*)$",
+  "^(help) (.*)$",
+  "^(help)$",
   "^(setphoto)$",
   "^(promote) (.*)$",
   "^(promote)",
@@ -1659,6 +1674,8 @@ return {
   "^[!/#](rules)$",
   "^[!/#](about)$",
   "^[!/#](setname) (.*)$",
+  "^[!/#](help) (.*)$",
+  "^[!/#](help)$",
   "^[!/#](setphoto)$",
   "^[!/#](promote) (.*)$",
   "^[!/#](promote)",
