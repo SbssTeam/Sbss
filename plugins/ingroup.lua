@@ -899,7 +899,7 @@ local function help()
   return help_text
 end
 
-local function help_fa()
+local function fa_help()
   local help_fa_text = tostring(_config.help_text)
   return help_fa_text
 end
@@ -1575,7 +1575,7 @@ local function run(msg, matches)
         return
       end
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /help")
-      return help_fa()
+      return fa_help()
     end
     if matches[1] == 'کد' or matches[1] == 'res' and is_momod(msg) then 
       local cbres_extra = {
