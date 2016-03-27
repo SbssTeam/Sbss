@@ -229,6 +229,7 @@ function create_config( )
     "inrealm",
     "insudo",
     "invite",
+    "help_fa",
     "isup",
     "leave_ban",
     "lock_badw",
